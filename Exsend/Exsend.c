@@ -1,8 +1,52 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <malloc.h>
 #include <string.h>
+#include <stdbool.h>
 
-void banner_exsend(){
+/// Global Variable
+int choices;
+int global_counter = 0;
+
+///---------------------------------------------Startup---------------------------------------------///
+
+// Struct Declare
+// (Linked List) Used for store readed city IDs and path
+
+// File Read
+
+void load_database()
+{
+	// Declare
+	FILE *db;
+	char city[999][999];
+
+	db = fopen("city.db", "r");
+
+	// Check for file availability
+	if(db == NULL)
+	{
+		printf("\n");
+		printf("Error while opening file.");
+		printf("\n");
+		exit(5);
+	}
+
+	// Read file and read to memory
+	while( (fscanf(db, "")) != EOF )
+	{
+		global_counter++;
+	}
+
+}
+
+void splash()
+{
+	
+}
+
+void banner()
+{
     printf("========================================================================================================================"); printf("\n");
     printf("\n");
     printf("########################################################################################################################"); printf("\n");
@@ -17,32 +61,36 @@ void banner_exsend(){
     printf("\n");
 }
 
-void menu_awal(){
-    printf("                                      1) Customer         (Sending Packages)"); printf("\n");
-    printf("                                      2) Go-Send Courier  (Delivering Packages)"); printf("\n");
-    printf("                                      3) Exit"); printf("\n");
+void menu_awal()
+{
+    printf("                                      1) Customer         (Sending Packages)");     printf("\n");
+    printf("                                      2) Go-Send Courier  (Delivering Packages)");  printf("\n");
+    printf("                                      3) Exit");                                    printf("\n");
     printf("\n");
     printf("                                      Enter choice : ");
 }
 
-void menu_customer(){
-    banner_exsend();
+void menu_customer()
+{
+    banner();
     printf("                                      1) Go-Send order"); printf("\n");
     printf("                                      2) Delivery status check"); printf("\n");
     printf("\n");
     printf("                                      Enter choice : ");
 }
 
-void menu_courier(){
-    banner_exsend();
+void menu_courier()
+{
+    banner();
     printf("                                      1) Go-Send order"); printf("\n");
     printf("                                      2) Delivery status update"); printf("\n");
     printf("\n");
     printf("                                      Enter choice : ");
 }
 
-void menu_send(){
-    banner_exsend();
+void menu_send()
+{
+    banner();
     printf("                                      1) Sender's name        : "); printf("\n");//ini nanti diisi sama scanf2 nya buat masukin data customer dll
     printf("                                      2) Pickup location      : "); printf("\n");
     printf("                                      3) Receiver's name      : "); printf("\n");
@@ -53,11 +101,11 @@ void menu_send(){
     printf("                                      Delivery route  : "); printf("\n"); //ini kalau gamau gausah???
     printf("\n");
     system("pause"); //ini nanti tolong ilangin karena belom dimasukin scanf2 jd di pause dulu
-
 }
 
-void menu_delivery(){
-    banner_exsend();
+void menu_delivery()
+{
+    banner();
     printf("                                      1) Sender's name        : "); printf("\n");//ini nanti diisi sama printf2 dari data yang telah diinput
     printf("                                      2) Pickup location      : "); printf("\n");
     printf("                                      3) Receiver's name      : "); printf("\n");
@@ -70,19 +118,26 @@ void menu_delivery(){
     system("pause"); //ini nanti tolong ilangin karena belom dimasukin scanf2 jd di pause dulu
 }
 
-int main(){
-    int pilihan_utama, pilihan_customer, pilihan_courier;
+int main()
+{
     while(1){
-        system("cls");
-        banner_exsend();
+
+        // Clear Screen
+        clrscr();
+
+        // Show Banner
+        banner();
+
+        // Show Main Menu
         menu_awal();
-        scanf("%d", &pilihan_utama); fflush(stdin);
-        switch(pilihan_utama){
+        scanf("%d", &choices); getchar();
+
+        switch(pilihan){
             case 1 :
                 system("cls");
                 menu_customer();
-                scanf("%d", &pilihan_customer); fflush(stdin);
-                switch(pilihan_customer){
+                scanf("%d", &choices); fflush(stdin);
+                switch(choices){
                     case 1 :
                         system("cls");
                         menu_send();
@@ -93,10 +148,10 @@ int main(){
                 }
                 break;
             case 2 :
-                system("cls");
+                clrscr();
                 menu_courier();
-                scanf("%d", &pilihan_courier); fflush(stdin);
-                switch(pilihan_courier){
+                scanf("%d", &choices); fflush(stdin);
+                switch(choices){
                     case 1 :
                         system("cls");
                         menu_delivery();
@@ -111,4 +166,9 @@ int main(){
         }
     }
     return 0;
+}
+
+void clrscr()
+{
+    system("cls");
 }
