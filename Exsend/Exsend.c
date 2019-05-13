@@ -4,9 +4,34 @@
 #include <string.h>
 #include <stdbool.h>
 
-/// Global Variable
+///-----------------------------------------Global Variabel-----------------------------------------///
 int choices;
 int global_counter = 0;
+
+// User Info
+int user_count = 0;
+int user_id[999];
+char user[999][999];
+char password[999][999];
+
+// Delivery Info
+int delivery_id[999];
+int delivery_status[999];
+
+// Distance Info
+int graph[999][999];
+int order_id[999];
+int price_info[999][999];
+char sender_name[999][999];
+char receiver_name[999][999];
+char sender_address[999][999];
+char pickup_city[999][999];
+char receive_address[999][999];
+char receive_city[999][999];
+
+// City Info
+int city_id[999];
+char city[999][999];
 
 ///---------------------------------------------Startup---------------------------------------------///
 
@@ -17,32 +42,113 @@ int global_counter = 0;
 
 void load_database()
 {
-	// Declare
-	FILE *db;
-	char city[999][999];
+	// Database File
+	FILE *user_db;		// User Database
+	FILE *delivery_db;	// Delivery Database
+	FILE *city_db;		// City Name Database
+	FILE *graph_db;		// Distance Graph Database
 
-	db = fopen("city.db", "r");
 
-	// Check for file availability
-	if(db == NULL)
+	//Declare Variable
+
+	int counter_x = 0;
+	int counter_y = 0;
+
+	user_db = fopen("user.db", "r");
+	delivery_db = fopen("delivery.db", "r");
+	city_db = fopen("city.db", "r");
+	graph_db = fopen("graph.db", "r");
+
+
+	///-------------------------------Check for file availability-------------------------------///
+
+	if(user_db == NULL)
 	{
 		printf("\n");
-		printf("Error while opening file.");
+		printf("Error while opening user.db!");
 		printf("\n");
 		exit(5);
 	}
 
-	// Read file and read to memory
-	while( (fscanf(db, "")) != EOF )
+	if(delivery_db == NULL)
+	{
+		printf("\n");
+		printf("Error while opening delivery.db!");
+		printf("\n");
+		exit(5);
+	}
+
+	if(city_db == NULL)
+	{
+		printf("\n");
+		printf("Error while opening city.db!");
+		printf("\n");
+		exit(5);
+	}
+
+	if(graph_db == NULL)
+	{
+		printf("\n");
+		printf("Error while opening graph.db!");
+		printf("\n");
+		exit(5);
+	}
+
+	///-----------------------------------Read File to Memory-----------------------------------///
+
+	// Read User Database to Memory
+	while( (fscanf(user_db, "%d#%[^\#]#%[^\n]", &user_id, &user, &password)) != EOF )
+	{
+		user_count++;
+	}
+
+	// Read City Database to Memory
+	while( (fscanf(city_db, "%d-%[^\n]", &city_id, &city[global_counter])) != EOF )
 	{
 		global_counter++;
 	}
+
+	// Read Distance Graph Database to Memory
+	while( (fscanf(graph_db, "%d ", &graph[counter_y][counter_x])) != EOF )
+	{
+	    printf("[%d][%d] = %d", counter_y, counter_x, graph[counter_y][counter_x]); printf("\n");
+		counter_x++;
+		if(counter_x > global_counter-1)
+		{
+			counter_y++;
+			counter_x = 0;
+		}
+	}
+
+						///DEBUG
+						for(int i = 0; i < user_count; i++)
+						{
+							printf("ID : %d", user_id[i]); printf("\n");
+							printf("User : %s", user[i]); printf("\n");
+							printf("Password : %s", password[i]); printf("\n");
+						}
+
+						for(int i = 0; i < global_counter; i++)
+						{
+							printf("ID : %d", i); printf("\n");
+						    printf("%s \n", city[i]);
+						}
+						/*
+						for(int i = 0; i < global_counter; i++)
+						{
+							for(int j = 0; j < global_counter; j++)
+							{
+						        printf("%d ", graph[i][j]);
+							}
+							printf("\n");
+						}
+						*/
 
 }
 
 void splash()
 {
-	
+    printf("");
 }
 
 void banner()
@@ -120,7 +226,8 @@ void menu_delivery()
 
 int main()
 {
-    while(1){
+    load_database();
+    /*while(1){
 
         // Clear Screen
         clrscr();
@@ -129,8 +236,8 @@ int main()
         banner();
 
         // Show Main Menu
-        menu_awal();
-        scanf("%d", &choices); getchar();
+        //menu_awal();
+        //scanf("%d", &choices); getchar();
 
         switch(pilihan){
             case 1 :
@@ -165,7 +272,7 @@ int main()
                         exit(0);
         }
     }
-    return 0;
+    return 0;*/
 }
 
 void clrscr()
