@@ -82,7 +82,7 @@ int distance[999];
 int route[999][999];
 char route_conv[999][999];
 
-///----------------------------------------------------------------------------Startup----------------------------------------------------------------------------///
+///---------------------------------------------Startup---------------------------------------------///
 
 /// Load Database to Memory
 void load_database()
@@ -92,8 +92,8 @@ void load_database()
 
 	// Database File
 	FILE *user_db;		// User Database
-	FILE *order_db;	    // order Database
-	FILE *location_db;	// location Name Database
+	FILE *order_db;	// order Database
+	FILE *location_db;		// location Name Database
 	FILE *graph_db;		// Distance Graph Database
 
 	//Declare Variable
@@ -101,12 +101,12 @@ void load_database()
 	int counter_y = 0;
 
 	// Set file loader
-	user_db     = fopen("user.db", "r");
-	order_db    = fopen("order.db", "r");
+	user_db = fopen("user.db", "r");
+	order_db = fopen("order.db", "r");
 	location_db = fopen("location.db", "r");
-	graph_db    = fopen("graph.db", "r");
+	graph_db = fopen("graph.db", "r");
 
-///------------------------------------------------------------------Check for file availability------------------------------------------------------------------///
+///-------------------------------Check for file availability-------------------------------///
 
 	// Check for user.db availability
 	if (user_db == NULL)
@@ -144,7 +144,7 @@ void load_database()
 		exit(5);
 	}
 
-///----------------------------------------------------------------------Read File to Memory----------------------------------------------------------------------///
+///-----------------------------------Read File to Memory-----------------------------------///
 
 	// Read User Database to Memory
 	while ((fscanf(user_db, "%d#%[^\#]#%[^\#]#%d", &user_id[user_count], &user[user_count], &password[user_count], &privilege[user_count])) != EOF)
@@ -178,7 +178,7 @@ void load_database()
 		}
 	}
 
-    // Checker to make sure the number of location in a file corresponding to the number of nodes in graph
+/// Checker to make sure the number of location in a file corresponding to the number of nodes in graph
     graph_check += sqrt(graph_count);
 
     if(graph_check != location_count)
@@ -199,6 +199,48 @@ void load_database()
     fclose(order_db);
     fclose(location_db);
     fclose(graph_db);
+
+	///DEBUG
+
+	printf("Database Load Success!"); printf("\n");
+	printf("There are %d Nodes", node_count);
+    getch();
+
+	/*
+	for (int i = 0; i < user_count; i++)
+	{
+		printf("ID : %d", user_id[i]); printf("\n");
+		printf("User : %s", user[i]); printf("\n");
+		printf("Password : %s", password[i]); printf("\n");
+	}
+
+	for (int i = 0; i < location_count; i++)
+	{
+		printf("ID : %d", i); printf("\n");
+		printf("%s \n", location[i]);
+	}
+
+	for(int i = 0; i < location_count; i++)
+	{
+		for(int j = 0; j < location_count; j++)
+		{
+			printf("%d ", graph[i][j]);
+		}
+		printf("\n");
+	}
+
+	for (int i = 0; i < order_count; i++)
+	{
+		printf("ID : %d", order_id[i]); printf("\n");
+		printf("Status : %s", order_status[i]); printf("\n");
+		printf("Sender Name : %s", sender_name[i]); printf("\n");
+		printf("Receiver Name : %s", receiver_name[i]); printf("\n");
+		printf("Sender Address : %s", sender_address[i]); printf("\n");
+		printf("Pickup location Location : %s", pickup_location[i]); printf("\n");
+		printf("Receiver Address : %s", receiver_address[i]); printf("\n");
+		printf("Receiver location Location : %s", receiver_location[i]); printf("\n");
+		printf("Price : %d", price_info[i]); printf("\n");
+	}*/
 
 }
 
@@ -265,8 +307,8 @@ void login()
 	banner();
 
 	// Print Login Menu
-	printf("\t\t\t\t\t\t");   printf("Username : ");	                                scanf("%[^\n]", &input_user);		getchar();
-	printf("\t\t\t\t\t\t");   printf("Password : ");	                                scanf("%[^\n]", &input_password);	getchar();
+	printf("\t\t\t\t\t\t"); printf("Username : ");				scanf("%[^\n]", &input_user);		getchar();
+	printf("\t\t\t\t\t\t"); printf("Password : ");				scanf("%[^\n]", &input_password);	getchar();
 
 	/// Check Username and Password
 	binary_search(input_user);
@@ -308,17 +350,14 @@ void main_menu()
     banner();
 
     // Print Menu
-	printf("\t\t\t\t\t"); printf("1) Customer        (Sending Packages)");			printf("\n");
-
-	//If Courier show courier menu
+	printf("\t\t\t\t\t"); printf("1) Customer        (Sending Packages)");			 printf("\n");
 	if(user_privelege == 2)
     {
-        printf("\t\t\t\t\t"); printf("2) EXSend Courier  (Delivering Packages)");	printf("\n");
+        printf("\t\t\t\t\t"); printf("2) EXSend Courier  (Delivering Packages)");	 printf("\n");
     }
-
-	printf("\t\t\t\t\t"); printf("0) Exit");									    printf("\n");
+	printf("\t\t\t\t\t"); printf("0) Exit");									     printf("\n");
 	printf("\n");
-	printf("\t\t\t\t\t"); printf("Enter choice : ");							    scanf("%d", &choices);    getchar();
+	printf("\t\t\t\t\t"); printf("Enter choice : ");							     scanf("%d", &choices); getchar();
 
 	// Check for user choices
 	switch(choices)
@@ -331,7 +370,6 @@ void main_menu()
 
         case 2 :
         {
-            // Make sure normal users can access courier menu
             if(user_privelege == 2)
             {
                 menu_courier();
@@ -363,11 +401,11 @@ void menu_customer()
 	banner();
 
 	// Show Menu
-	printf("\t\t\t\t\t"); printf("1) EXSend Delivery");				printf("\n");
-	printf("\t\t\t\t\t"); printf("2) Delivery status check");		printf("\n");
-	printf("\t\t\t\t\t"); printf("0) Back");				        printf("\n");
+	printf("\t\t\t\t\t"); printf("1) EXSend Delivery");				        printf("\n");
+	printf("\t\t\t\t\t"); printf("2) Delivery status check");				printf("\n");
+	printf("\t\t\t\t\t"); printf("0) Back");				                printf("\n");
 	printf("\n");
-	printf("\t\t\t\t\t"); printf("Enter choice : ");				scanf("%d", &choices);  getchar();
+	printf("\t\t\t\t\t"); printf("Enter choice : ");				        scanf("%d", &choices); getchar();
 
 	// Check for user choices
 	switch(choices)
@@ -394,7 +432,6 @@ void menu_customer()
 
 void customer_delivery()
 {
-    // Set Global ID
     global_id = 41;
 
     // Clear Screen
@@ -406,6 +443,8 @@ void customer_delivery()
 	/// Input Check
 	if(input_check >= 5)
     {
+        printf("Ready to run dijkstra algorithm"); printf("\n");
+        getch();
         dijkstra();
         input_price = ( distance[destination] * 1000 );
     }
@@ -426,35 +465,23 @@ void customer_delivery()
 	if(input_check >= 5)
     {
         printf("\n");
-        printf("\t\t\t\t\t\t\t");  printf("7) Confirm Order");
+        printf("\t\t\t\t\t\t\t"); printf("7) Confirm Order");
     }
 
     printf("\n");
-    printf("\t\t\t\t\t\t\t");      printf("0) Back to menu");                                        printf("\n");
+    printf("\t\t\t\t\t\t\t"); printf("0) Back to menu");                                                   printf("\n");
 
     printf("\n");
 
-	printf("\t\t\t\t\t\t");        printf("Enter choice : ");				                         scanf("%d", &choices); getchar();
+	printf("\t\t\t\t\t\t"); printf("Enter choice : ");				                                 scanf("%d", &choices); getchar();
 
-	// If user decided to confirm and to make sure users are not able to choose 7 before filled in the data
 	if(input_check >= 5)
     {
         if(choices == 7)
         {
-            // Export to file
             export_tofile();
-
-            // Reset variable
             reset();
-
-            // Re-Load database
             load_database();
-
-            // Show users that the order has been placed
-            printf("\t\t\t\t\t\t"); printf("Your order has been recorded!");                          printf("\n");
-            printf("\t\t\t\t\t\t"); printf("We will called you when we are ready."); printf("\n");    getch();
-
-            // Back to menu
             menu_customer();
         }
     }
@@ -519,8 +546,7 @@ void delivery_name()
             // Show banner
             banner();
 
-            // Demand user input
-            printf("\t\t\t\t\t"); printf("Receiver's name                : "); scanf("%[^\n]", input_receiver_name); getchar();
+            printf("\t\t\t\t\t"); printf("Receiver's name                : ");  scanf("%[^\n]", input_receiver_name); getchar();
 
             // Back to delivery menu
             input_check++;
@@ -550,12 +576,17 @@ void delivery_location()
             // Print all available location
             for(count = 0; count < location_count; count++)
             {
-                printf("\t\t\t\t\t"); printf("%d) %s", count+1, location[count]);        printf("\n");
+                printf("\t\t\t\t\t"); printf("%d) %s", count+1, location[count]);     printf("\n");
             }
 
-            // Demand user input
             printf("\n");
-            printf("\t\t\t\t\t");     printf("Choose pickup location : ");               scanf("%d", &choices);  getchar();
+            printf("\t\t\t\t\t"); printf("Choose pick up location : ");               scanf("%d", &choices);  getchar();
+
+            /// Check if pickup and receive location is the same
+            /*if( strcmpi(input_receiver_location, input_sender_location) == 0 )
+            {
+                printf("printf("\t\t\t\t\t"); printf("Choose pick up location : ");               scanf("%d", &choices);  getchar();");
+            }*/
 
             // Choices to IDs converter
             choices--;
@@ -585,9 +616,13 @@ void delivery_location()
             }
 
             printf("\n");
+            printf("\t\t\t\t\t"); printf("Choose receiver's location : ");            scanf("%d", &choices);  getchar();
 
-            // Demand user input
-            printf("\t\t\t\t\t");     printf("Choose receiver's location : ");        scanf("%d", &choices);  getchar();
+            /// Check if pickup and receive location is the same
+            /*if( strcmpi(input_receiver_location, input_sender_location) == 0 )
+            {
+                printf("printf("\t\t\t\t\t"); printf("Choose pick up location : ");               scanf("%d", &choices);  getchar();");
+            }*/
 
             // Choices to IDs converter
             choices--;
@@ -620,7 +655,7 @@ void delivery_address()
             // Show banner
             banner();
 
-            printf("\t\t\t\t"); printf("Sender's Address                  : ");     scanf("%[^\n]", input_sender_address);   getchar();
+            printf("\t\t\t\t"); printf("Sender's Address                : ");  scanf("%[^\n]", input_sender_address); getchar();
 
             // Back to delivery menu
             input_check++;
@@ -636,7 +671,7 @@ void delivery_address()
             // Show banner
             banner();
 
-            printf("\t\t\t\t"); printf("Receiver's Address                : ");     scanf("%[^\n]", input_receiver_address); getchar();
+            printf("\t\t\t\t"); printf("Receiver's Address                : ");  scanf("%[^\n]", input_receiver_address); getchar();
 
             // Back to delivery menu
             input_check++;
@@ -658,25 +693,19 @@ void menu_ustatus()
     banner();
 
     // Print Menu
-	printf("\t\t\t\t\t\t\t");     printf("Order List");	   printf("\n");
+	printf("\t\t\t\t\t\t\t"); printf("Order List");		 printf("\n");
 
 	printf("\n");
 
-    // Show only users order
     binary_search(user);
 
     printf("\n");
+    printf("\t\t\t\t\t\t\t");      printf("0) Exit");                                 printf("\n");
 
-    // Print Exit option
-    printf("\t\t\t\t\t\t\t");     printf("0) Exit");       printf("\n");
-
-    // Reset order_count
     user_order_count = 0;
 
     printf("\n");
-
-    // Demand user input
-    printf("\t\t\t\t\t\t\t");     printf("Choices : ");    scanf("%d", &choices);
+    printf("\t\t\t\t\t\t\t"); printf("Choices : ");       scanf("%d", &choices);
 
     order_show();
 }
@@ -702,26 +731,24 @@ void order_show()
     }
 
     // Print Order Information
-    printf("\t\t\t\t\t\t\t"); printf("Order #%d", choices);				                              printf("\n");
+    printf("\t\t\t\t\t\t\t"); printf("Order #%d", choices);				                        printf("\n");
 
     printf("\n");
 
-    printf("\t\t\t\t");       printf("Sender's name                : %s", sender_name[id]);           printf("\n");
-	printf("\t\t\t\t");       printf("Sender's pick up location    : %s", pickup_location[id]);       printf("\n");
-	printf("\t\t\t\t");       printf("Sender's address             : %s", sender_address[id]);        printf("\n");
+    printf("\t\t\t\t"); printf("Sender's name                : %s", sender_name[id]);           printf("\n");
+	printf("\t\t\t\t"); printf("Sender's pick up location    : %s", pickup_location[id]);       printf("\n");
+	printf("\t\t\t\t"); printf("Sender's address             : %s", sender_address[id]);        printf("\n");
 	printf("\n");
-	printf("\t\t\t\t");       printf("Receiver's name              : %s", receiver_name[id]);         printf("\n");
-	printf("\t\t\t\t");       printf("Receiver's delivery location : %s", receiver_location[id]);     printf("\n");
-	printf("\t\t\t\t");       printf("Receiver's address           : %s", receiver_address[id]);      printf("\n");
+	printf("\t\t\t\t"); printf("Receiver's name              : %s", receiver_name[id]);         printf("\n");
+	printf("\t\t\t\t"); printf("Receiver's delivery location : %s", receiver_location[id]);     printf("\n");
+	printf("\t\t\t\t"); printf("Receiver's address           : %s", receiver_address[id]);      printf("\n");
 
 	printf("\n");
 
-	printf("\t\t\t\t");       printf("Delivery fees                : Rp %d", price_info[id]);         printf("\n");
-	printf("\t\t\t\t");       printf("Status                       : %s", order_status[id]);          printf("\n");
+	printf("\t\t\t\t"); printf("Delivery fees                : Rp %d", price_info[id]);         printf("\n");
+	printf("\t\t\t\t"); printf("Status                       : %s", order_status[id]);          printf("\n");
 
-	printf("\t\t\t\t");       printf("Press any key to go back...");                                  getch();
-
-	// Back to user order status
+	printf("\t\t\t\t"); printf("Press any key to go back...");                                  getch();
 	menu_ustatus();
 
 }
@@ -739,23 +766,18 @@ void menu_courier()
     banner();
 
     // Print Menu
-	printf("\t\t\t\t\t\t\t");    printf("Order List");				                                            printf("\n");
+	printf("\t\t\t\t\t\t\t"); printf("Order List");				               printf("\n");
 	printf("\n");
 
 	for(counter = 0; counter < order_count; counter++)
     {
-        printf("\t\t\t\t\t\t");  printf("%d) %s | %s", counter+1, sender_name[counter], order_status[counter]); printf("\n");
+        printf("\t\t\t\t\t\t"); printf("%d) %s | %s", counter+1, sender_name[counter], order_status[counter]); printf("\n");
     }
 
     printf("\n");
-
-    // Print exit option
-	printf("\t\t\t\t\t\t");      printf("0) Exit");								                                printf("\n");
-
+	printf("\t\t\t\t\t\t"); printf("0) Exit");								   printf("\n");
 	printf("\n");
-
-	// Demand user input
-	printf("\t\t\t\t\t\t");      printf("Enter choice : ");						                                scanf("%d", &choices); getchar();
+	printf("\t\t\t\t\t\t"); printf("Enter choice : ");						   scanf("%d", &choices); getchar();
 
 	// Check for user choices
     delivery_show();
@@ -775,32 +797,35 @@ void delivery_show()
     // Show banner
     banner();
 
+    // Export route to linked list
+    //export_tolist();
+
     // Print Order Information
-    printf("\t\t\t\t\t\t\t");   printf("Order #%d", input+1);				                                printf("\n");
+    printf("\t\t\t\t\t\t\t"); printf("Order #%d", input+1);				                           printf("\n");
 
     printf("\n");
 
-    printf("\t\t\t\t");         printf("Sender's name                : %s", sender_name[input]);            printf("\n");
-	printf("\t\t\t\t");         printf("Sender's pick up location    : %s", pickup_location[input]);        printf("\n");
-	printf("\t\t\t\t");         printf("Sender's address             : %s", sender_address[input]);         printf("\n");
+    printf("\t\t\t\t"); printf("Sender's name                : %s", sender_name[input]);           printf("\n");
+	printf("\t\t\t\t"); printf("Sender's pick up location    : %s", pickup_location[input]);       printf("\n");
+	printf("\t\t\t\t"); printf("Sender's address             : %s", sender_address[input]);        printf("\n");
 	printf("\n");
-	printf("\t\t\t\t");         printf("Receiver's name              : %s", receiver_name[input]);          printf("\n");
-	printf("\t\t\t\t");         printf("Receiver's delivery location : %s", receiver_location[input]);      printf("\n");
-	printf("\t\t\t\t");         printf("Receiver's address           : %s", receiver_address[input]);       printf("\n");
-
-	printf("\n");
-
-	printf("\t\t\t\t");         printf("Delivery fees                : Rp %d", price_info[input]);          printf("\n");
-	printf("\t\t\t\t");         printf("Status                       : %s", order_status[input]);           printf("\n");
+	printf("\t\t\t\t"); printf("Receiver's name              : %s", receiver_name[input]);         printf("\n");
+	printf("\t\t\t\t"); printf("Receiver's delivery location : %s", receiver_location[input]);     printf("\n");
+	printf("\t\t\t\t"); printf("Receiver's address           : %s", receiver_address[input]);      printf("\n");
 
 	printf("\n");
 
-	printf("\t\t\t\t\t\t\t");   printf("1) Change Status");                                                 printf("\n");
-	printf("\t\t\t\t\t\t\t");   printf("2) Directions");                                                    printf("\n");
+	printf("\t\t\t\t"); printf("Delivery fees                : Rp %d", price_info[input]);         printf("\n");
+	printf("\t\t\t\t"); printf("Status                       : %s", order_status[input]);          printf("\n");
 
 	printf("\n");
 
-	printf("\t\t\t\t\t\t\t");   printf("Choices : ");                                                       scanf("%d", &choices);
+	printf("\t\t\t\t\t\t\t"); printf("1) Change Status");                                          printf("\n");
+	printf("\t\t\t\t\t\t\t"); printf("2) Directions");                                             printf("\n");
+
+	printf("\n");
+
+	printf("\t\t\t\t\t\t\t"); printf("Choices : ");                                                scanf("%d", &choices);
 
 	switch(choices)
 	{
@@ -831,29 +856,26 @@ void menu_cstatus(int *input)
     // Show banner
     banner();
 
-    printf("\t\t\t\t\t\t\t");           printf("Order #%d", id);				               printf("\n");
-    printf("\t\t\t\t\t\t      ");       printf("Change Status");				               printf("\n");
+    printf("\t\t\t\t\t\t\t");     printf("Order #%d", id);				                       printf("\n");
+    printf("\t\t\t\t\t\t      "); printf("Change Status");				                       printf("\n");
 
     printf("\n");
 
-    printf("\t\t\t\t\t\t     ");        printf("1) Pending");				                   printf("\n");
-    printf("\t\t\t\t\t\t     ");        printf("2) Delivered");				                   printf("\n");
+    printf("\t\t\t\t\t\t     "); printf("1) Pending");				                           printf("\n");
+    printf("\t\t\t\t\t\t     "); printf("2) Delivered");				                       printf("\n");
 
     for(int count = 0; count < node_count; count++)
     {
-        printf("\t\t\t\t\t\t     ");    printf("%d) %s", count+3, location[count]);			   printf("\n");
+        printf("\t\t\t\t\t\t     "); printf("%d) %s", count+3, location[count]);			   printf("\n");
     }
 
     printf("\n");
 
-    printf("\t\t\t\t\t\t\t");           printf("Choices : ");			                       scanf("%d", &choices); getchar();
+    printf("\t\t\t\t\t\t\t"); printf("Choices : ");			                                   scanf("%d", &choices); getchar();
 
     id--;
-
-    // Modify corresponding data in memory
     modify_memory(id);
 
-    // Back to courier menu
     menu_courier();
 }
 
@@ -864,7 +886,6 @@ void binary_search(char *search)
 	low = 0;
 	int counter = 0;
 
-	// Set high variable according to global id
 	if(global_id == 1)
     {
         high = user_count - 1;
@@ -986,6 +1007,7 @@ int minDistance(int dist[],bool sptSet[])
 
 void export_route(int parent[], int j)
 {
+    // Base Case : If j is source
     if (parent[j] == - 1)
     {
         return;
@@ -1030,16 +1052,23 @@ int export_dijkstra(int dist[], int n, int parent[])
 
 void dijkstra()
 {
-    // store shortest distance
+    // The output array. dist[i]
+    // will hold the shortest
+    // distance from src to i
     int dist[node_count];
 
-    // Declare sptSet
+    // sptSet[i] will true if vertex
+    // i is included / in shortest
+    // path tree or shortest distance
+    // from src to i is finalized
     bool sptSet[node_count];
 
-    // Store shortest path tree
+    // Parent array to store
+    // shortest path tree
     int parent[node_count];
 
-    // Initialize all distances as infinite and set sptSet to false
+    // Initialize all distances as
+    // INFINITE and stpSet[] as false
     for (int i = 0; i < node_count; i++)
     {
         parent[source] = -1;
@@ -1047,22 +1076,37 @@ void dijkstra()
         sptSet[i] = false;
     }
 
-    // Set distance from source to source is 0
+    // Distance of source vertex
+    // from itself is always 0
     dist[source] = 0;
 
-    // Find shortest path from all vertex
+    // Find shortest path
+    // for all vertices
     for (int count = 0; count < node_count - 1; count++)
     {
-        // Choose minimum distance
+        // Pick the minimum distance
+        // vertex from the set of
+        // vertices not yet processed.
+        // u is always equal to src
+        // in first iteration.
         int u = minDistance(dist, sptSet);
 
-        // Set the chosen vertex to true
+        // Mark the picked vertex
+        // as processed
         sptSet[u] = true;
 
-        // Update distance value
+        // Update dist value of the
+        // adjacent vertices of the
+        // picked vertex.
         for (int v = 0; v < node_count; v++)
 
-            // Update if not in sptSet
+            // Update dist[v] only if is
+            // not in sptSet, there is
+            // an edge from u to v, and
+            // total weight of path from
+            // src to v through u is smaller
+            // than current value of
+            // dist[v]
             if (!sptSet[v] && graph[u][v] &&
                 dist[u] + graph[u][v] < dist[v])
             {
@@ -1071,7 +1115,8 @@ void dijkstra()
             }
     }
 
-    // Export result to memory
+    // print the constructed
+    // distance array
     export_dijkstra(dist, node_count, parent);
 }
 
@@ -1081,6 +1126,7 @@ void modify_memory(int *id)
     int local_id;
     local_id = id;
 
+    printf("%s", order_status[local_id]);
     switch(global_id)
     {
         case 511 :
@@ -1101,8 +1147,6 @@ void modify_memory(int *id)
             break;
         }
     }
-
-    // Overwrite database from memory
     overwrite_tofile();
 }
 
@@ -1110,11 +1154,11 @@ void export_tofile()
 {
 	// Database File
 	FILE *user_db;		// User Database
-	FILE *order_db;	    // order Database
-	FILE *location_db;  // location Name Database
+	FILE *order_db;	// order Database
+	FILE *location_db;		// location Name Database
 	FILE *graph_db;		// Distance Graph Database
 
-	// Set file loader and open file
+	// Set file loader
 	user_db = fopen("user.db", "a");
 	order_db = fopen("order.db", "a");
 	location_db = fopen("location.db", "a");
@@ -1129,6 +1173,9 @@ void export_tofile()
             break;
         }
     }
+
+    printf("DATA SUCCESFULLY EXPORTED TO DATABASE!");
+    getch();
 
     // Close file
     fclose(user_db);
@@ -1149,12 +1196,12 @@ void overwrite_tofile()
 	FILE *graph_db;		// Distance Graph Database
 
 	// Set file loader
+
     if(global_id == 511)
     {
         order_db = fopen("order.db", "w");
     }
 
-    // Overwrite database from memory
 	switch(global_id)
 	{
         case 511 :
@@ -1179,8 +1226,7 @@ void show_direction(int *input)
     int counter = 0;
     int insert = 0;
     int page = 1;
-    sord = 0;       // 0 = Set to source || 1 = Set to destination (Used to set source and destination variable)
-
+    sord = 0;
     local_input = input;
     struct route *head, *node, *tail, *curr;
 
@@ -1191,13 +1237,11 @@ void show_direction(int *input)
     sord++;
     binary_search(receiver_location[local_input]);
 
-    // Run Dijkstra Algorithm
     dijkstra();
 
     // Export to linked-list
     free(head);
 
-    // Add Linked List
     for(counter = 0; counter < length[destination]; counter++)
     {
         node = (struct route*) malloc(sizeof(struct route));
@@ -1221,7 +1265,7 @@ void show_direction(int *input)
 
     curr = head;
 
-    // Print Directions
+    // Print Direction
     while(1)
     {
         // Clear Screen
@@ -1230,25 +1274,25 @@ void show_direction(int *input)
         // Show banner
         banner();
 
-        printf("\t\t\t\t\t\t    ");         printf("=== Order #%d ===", local_input+1);	        printf("\n");
+        printf("\t\t\t\t\t\t    ");    printf("=== Order #%d ===", local_input+1);	     printf("\n");
         printf("\n");
-        printf("\t\t\t\t\t\t      ");       printf("Direction #1", local_input+1);	            printf("\n");
+        printf("\t\t\t\t\t\t      ");  printf("Direction #1", local_input+1);	          printf("\n");
         printf("\n");
-        printf("\t\t\t\t\t\t       ");      printf("%s", curr->location_route);                 printf("\n");
+        printf("\t\t\t\t\t\t       "); printf("%s", curr->location_route);                printf("\n");
 
         printf("\n");
 
-        printf("\t\t\t\t      ");           printf("1) Previous Direction");                    printf("      ");       printf("2) Next Direction");    printf("\n");
+        printf("\t\t\t\t      ");      printf("1) Previous Direction"); printf("      "); printf("2) Next Direction"); printf("\n");
         printf("\n");
-        printf("\t\t\t\t\t\t\t");           printf("0) Exit");                                  printf("\n");
+        printf("\t\t\t\t\t\t\t");      printf("0) Exit");                                 printf("\n");
         printf("\n");
-        printf("\t\t\t\t\t\t       ");      printf("Choices : ");                               scanf("%d", &choices);   getchar();
+        printf("\t\t\t\t\t\t       "); printf("Choices : "); scanf("%d", &choices);       getchar();
 
         if(choices == 2)
         {
             if(curr->next == NULL)
             {
-                printf("\t\t\t\t\t    ");   printf("Already at the final destination");
+                printf("\t\t\t\t\t    "); printf("Already at the final destination");
                 getch();
             }
             else
@@ -1260,7 +1304,7 @@ void show_direction(int *input)
         {
             if(curr->prev == NULL)
             {
-                printf("\t\t\t\t\t ");      printf("Already at the start of the destination");
+                printf("\t\t\t\t\t "); printf("Already at the start of the destination");
                 getch();
             }
             else
@@ -1270,7 +1314,6 @@ void show_direction(int *input)
         }
         else if(choices == 0)
         {
-            // Exit to courier menu
             menu_courier();
         }
     }
@@ -1278,33 +1321,17 @@ void show_direction(int *input)
 
 int main()
 {
-    // Set color to default
     set_color();
-
-    // Load database
 	load_database();
 
 	// Clear Screen
 	clrscr();
-
-	// Show EXSend splash logo animation
 	splash();
-
-	Sleep(500);
-    system("COLOR 09");
-    Sleep(500);
-	system("COLOR 03");
-    Sleep(500);
-    system("COLOR 0B");
 	Sleep(1000);
 
-	// Clear Screen
     clrscr();
-
-    // Sign in
     login();
 
-    // Print Menu
 	main_menu();
 }
 
@@ -1322,8 +1349,7 @@ void reset()
 
 void set_color()
 {
-    // Black Background and white text
-    system("COLOR 0F");
+    system("COLOR 0B");
 }
 
 void invalid()
