@@ -1,0 +1,14 @@
+0#Tangerang#Lemuel#Data1#Montana Village Jln. Ronan No. 3#Tangerang#Pasar Kemis No. 26 RT/RW 02#Bandung#10000#none
+1#Pending#Lemuel#Andrio#Batu mentah 17 No. 34#Sukabumi#Kost CiCC 32 Kamar No. 4#Jakarta#120000#admin
+2#Pending#Lemuel#Sandy#Depok Apartment Lt. 3 No. 47#Depok#Hotel Mas Murni Lt. 7 No. 703#Bandung#170000#none
+3#Pending#Lemuel#Budi#Cluster Kicir No. 4#Cirebon#Citra Raya Cluster Menok No. 28#Tangerang#250000#none
+4#Pending#Lemuel#Din#Lesvi Corp di mall bogor utama#Bogor#Citra Raya Edu Komputer#Tangerang#80000#none
+5#Pending#Lemuel#Indah#Jauh#Tasikmalaya#Mall deket Lt. 4 No. 24#Tangerang#310000#none
+6#Delivered#Andrio#Reynardo#Gang Besi No. 27#Sukabumi#Dijkstra Besi No. 28#Tangerang#140000#admin
+7#Pending#Andrio#Pak Ogg#Mix 27 Radio Tower ke-8#Bandung#Kosong No. 4#Tasikmalaya#130000#none
+8#Pending#Andrio#Pak Agung#Bayuwangi No. 24#Tangerang#Jalan Sempit 5 No. 34#Depok#50000#none
+9#Pending#Afri#Lemuel#Jln Panas duatiga No. 24#Tangerang#Montana Village Jln Ronan No. 3#Jakarta#30000#none
+10#Pending#Afri#Anthony#Jln Lebar Sejahtera No. 5#Sukabumi#Balik Apartement Lt. 5 No. 19#Depok#100000#none
+11#Pending#Afri#Pak Bahru#Universitas Multimedia Nusantara#Tangerang#Universitas Pasti Lulus#Jakarta#30000#none
+12#Pending#Lemuel#Andry#Montana Village Jln Hammon No. 4#Tangerang#Universitas Multimedia Nusantara#Jakarta#30000#none
+13#Pending#Lemuel#Dwynn#Montana Village#Tangerang#Universitas Multimedia Nusantara#Tasikmalaya#310000#none
