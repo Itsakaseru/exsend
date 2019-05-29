@@ -1,5 +1,5 @@
 # Exsend
-Exsend is a basic delevery programs. Programs for our college project.
+Exsend is a basic delivery programs. Programs for our college project.
 
 # Status
 This project is still heavily under development.
