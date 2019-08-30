@@ -1,8 +1,5 @@
 # Exsend
-Exsend is a basic delivery programs. Programs for our college project.
-
-# Status
-This project is still heavily under development.
+Exsend adalah program sangat basic yang ditulis dalam bahasa C untuk memenuhi nilai kelompok Algoritma dan Struktur Data Semester II
 
 # Licence
-All the source code are licensed under the GNU GPLv3. You are allowed to do almost anything you want with this project, except to distribute closed source versions.
+Bebas~

@@ -133,7 +133,6 @@ void load_database()
 		printf("\n");
 		printf("Error while opening user.txt!");
 		printf("\n");
-		system("pause");
 		exit(5);
 	}
 
@@ -147,7 +146,6 @@ void load_database()
 		printf("\n");
 		printf("Error while opening order.txt!");
 		printf("\n");
-		system("pause");
 		exit(5);
 	}
 
@@ -161,7 +159,6 @@ void load_database()
 		printf("\n");
 		printf("Error while opening location.txt!");
 		printf("\n");
-		system("pause");
 		exit(5);
 	}
 
@@ -175,7 +172,6 @@ void load_database()
 		printf("\n");
 		printf("Error while opening graph.txt!");
 		printf("\n");
-		system("pause");
 		exit(5);
 	}
 
@@ -200,7 +196,6 @@ void load_database()
             // Print Error
             printf("Invalid user database!");
             printf("\n");
-            system("pause");
             exit(6);
         }
 	}
@@ -226,7 +221,6 @@ void load_database()
             // Print Error
             printf("Invalid order database!");
             printf("\n");
-            system("pause");
             exit(6);
         }
 	}
@@ -250,7 +244,6 @@ void load_database()
             // Print Error
             printf("Invalid user database!");
             printf("\n");
-            system("pause");
             exit(6);
         }
 	}
@@ -291,7 +284,6 @@ void load_database()
         // Print Error
         printf("Invalid graph or location database!");
         printf("\n");
-        system("pause");
         exit(6);
     }
 
@@ -304,7 +296,6 @@ void load_database()
         // Print Error
         printf("Invalid graph or location database!");
         printf("\n");
-        system("pause");
         exit(6);
     }
 
